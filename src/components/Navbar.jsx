@@ -1,0 +1,191 @@
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { nav } from "../data/content";
+import Magnetic from "./Magnetic";
+import { MenuIcon, CloseIcon } from "./Icons";
+import Monogram from "./Monogram";
+
+export default function Navbar() {
+  const [active, setActive] = useState("#home");
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const sections = nav.map((n) => document.querySelector(n.href));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => s && observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="wrap" style={{ position: "sticky", top: 16, zIndex: 100 }}>
+      <motion.div
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          height: 80,
+          padding: "0 16px 0 18px",
+          borderRadius: 999,
+          background: "linear-gradient(170deg, var(--maroon-2), var(--maroon) 50%, var(--maroon-dark))",
+          boxShadow: "var(--depth-dark)",
+        }}
+      >
+        <a href="#home" style={{ display: "flex", alignItems: "center", gap: 14, color: "var(--cream)" }}>
+          <Monogram size={48} fill="var(--maroon-dark)" delay={0.2} />
+          <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 26, fontWeight: 600 }}>Rashi Shah</span>
+        </a>
+
+        <nav style={{ display: "flex", alignItems: "center", gap: 14 }} className="navlinks">
+          {nav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="cursor-hover"
+              style={{
+                position: "relative",
+                fontSize: 14,
+                fontFamily: "Sora",
+                fontWeight: 600,
+                color: "var(--cream)",
+                padding: "8px 14px",
+                opacity: active === item.href ? 1 : 0.72,
+              }}
+            >
+              {item.label}
+              {active === item.href && (
+                <motion.span
+                  layoutId="nav-pill"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: 999,
+                    background: "oklch(0.965 0.014 80 / 0.14)",
+                    zIndex: -1,
+                  }}
+                />
+              )}
+            </a>
+          ))}
+        </nav>
+
+        <Magnetic
+          as="a"
+          href="#contact"
+          style={{
+            height: 46,
+            padding: "0 24px",
+            borderRadius: 999,
+            background: "var(--cream)",
+            color: "var(--maroon)",
+            display: "none",
+            alignItems: "center",
+            fontFamily: "Sora",
+            fontWeight: 700,
+            fontSize: 13.5,
+          }}
+          className="contact-pill"
+        >
+          Contact Me
+        </Magnetic>
+
+        <button
+          className="cursor-hover"
+          onClick={() => setOpen(true)}
+          style={{
+            display: "none",
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            background: "oklch(0.965 0.014 80 / 0.12)",
+            color: "var(--cream)",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          id="mobile-menu-btn"
+        >
+          <MenuIcon />
+        </button>
+      </motion.div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "oklch(0.24 0.02 50 / 0.5)",
+              zIndex: 200,
+            }}
+            onClick={() => setOpen(false)}
+          >
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                margin: "20px",
+                background: "var(--cream)",
+                borderRadius: 28,
+                padding: 28,
+                display: "flex",
+                flexDirection: "column",
+                gap: 6,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <button onClick={() => setOpen(false)} style={{ color: "var(--maroon)" }}>
+                  <CloseIcon />
+                </button>
+              </div>
+              {nav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  style={{
+                    fontFamily: "Sora",
+                    fontWeight: 700,
+                    fontSize: 20,
+                    color: "var(--ink)",
+                    padding: "10px 6px",
+                  }}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style>{`
+        @media (min-width: 901px) {
+          .contact-pill { display: flex !important; }
+        }
+        @media (max-width: 900px) {
+          .navlinks { display: none !important; }
+          #mobile-menu-btn { display: flex !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
