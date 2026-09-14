@@ -509,6 +509,223 @@ img, svg {
   color: var(--cream);
 }
 
+/* ---------- project previews ---------- */
+
+.pv-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1.5px solid var(--line);
+  background: oklch(0.22 0.02 50);
+  text-align: left;
+  box-shadow: 0 22px 40px -26px oklch(0.26 0.08 22 / 0.7);
+}
+.proj-card.is-dark .pv-thumb {
+  border-color: oklch(0.965 0.014 80 / 0.2);
+}
+.pv-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+  padding: 0 12px;
+  background: oklch(0.22 0.02 50);
+  color: oklch(0.86 0.01 70);
+}
+.pv-dots {
+  display: flex;
+  flex: none;
+  gap: 6px;
+}
+.pv-dots i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: oklch(0.5 0.02 50);
+}
+.pv-dots i:first-child {
+  background: oklch(0.64 0.15 28);
+}
+.pv-dots i:nth-child(2) {
+  background: var(--gold);
+}
+.pv-address {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: oklch(1 0 0 / 0.08);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pv-shot {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.pv-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+/* the widget sits on a warm "desktop wallpaper", like it does on screen */
+.pv-thumb.is-app .pv-shot,
+.pv-modal.is-app .pv-body {
+  background: radial-gradient(circle at 72% 28%, oklch(0.42 0.1 22), oklch(0.2 0.05 22) 72%);
+}
+.pv-thumb.is-app .pv-shot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pv-thumb.is-app .pv-shot img {
+  width: auto;
+  height: 86%;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 24px 40px -12px oklch(0 0 0 / 0.6);
+}
+.pv-thumb:hover .pv-shot img {
+  transform: scale(1.04);
+}
+.pv-cta {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--maroon);
+  font-family: "Sora", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px -8px oklch(0 0 0 / 0.45);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.pv-thumb:hover .pv-cta {
+  background: var(--maroon);
+  color: var(--cream);
+}
+
+.pv-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 40px);
+  background: oklch(0.2 0.03 30 / 0.6);
+  backdrop-filter: blur(6px);
+}
+.pv-modal {
+  display: flex;
+  flex-direction: column;
+  width: min(1200px, 100%);
+  height: min(820px, 100%);
+  overflow: hidden;
+  border-radius: 20px;
+  background: oklch(0.18 0.02 50);
+  box-shadow: 0 40px 80px -20px oklch(0 0 0 / 0.55);
+}
+.pv-modal.is-app {
+  width: min(560px, 100%);
+}
+.pv-modal .pv-bar {
+  height: 50px;
+  padding: 0 6px 0 16px;
+}
+.pv-body {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+}
+.pv-body iframe {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.pv-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: oklch(0.82 0.01 70);
+  font-size: 14px;
+}
+.pv-modal.is-app .pv-body {
+  padding: 28px;
+}
+.pv-modal.is-app .pv-body img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 30px 50px -16px oklch(0 0 0 / 0.65);
+}
+.pv-action {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--cream);
+  font-family: "Sora", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.pv-action:hover,
+.pv-close:hover {
+  background: oklch(1 0 0 / 0.1);
+}
+.pv-close {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--cream);
+}
+
+@media (max-width: 720px) {
+  .pv-backdrop {
+    padding: 0;
+  }
+  .pv-modal,
+  .pv-modal.is-app {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  .pv-action-label {
+    display: none;
+  }
+}
+
 /* ---------- contact ---------- */
 
 /* grid children default to min-width:auto, so a long email address would push its column past the card edge */

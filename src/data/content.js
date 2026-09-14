@@ -8,7 +8,7 @@ export const nav = [
 ];
 
 export const stats = [
-  { value: 4, suffix: "", label: "Projects Shipped" },
+  { value: 6, suffix: "", label: "Projects Shipped" },
   { value: 2, suffix: "", label: "Internships" },
 ];
 
@@ -37,7 +37,35 @@ export const skillGroups = [
 
 export const projects = [
   {
-    number: "01",
+    title: "The Record Atlas",
+    meta: "Web App · 2025–26",
+    description:
+      "An interactive atlas of 47 record-breaking places — world landmarks and every Indian state and union territory — plotted at their real coordinates. Includes Ctrl+K search, shareable links, and a guide I wrote from scratch that answers questions and cites the records it used, with no API keys.",
+    tech: ["Python", "FastAPI", "JavaScript", "Leaflet.js", "TF-IDF Search"],
+    github: "https://github.com/RashiShah08/Interactive-Geo-Explorer",
+    demo: "https://the-record-atlas.vercel.app/",
+    demoLabel: "Live Demo",
+    preview: {
+      type: "site",
+      url: "https://the-record-atlas.vercel.app/",
+      image: "previews/record-atlas.png",
+      alt: "The Record Atlas home screen, with a world map and its two atlases",
+    },
+  },
+  {
+    title: "Checkera",
+    meta: "Desktop App · 2026",
+    description:
+      "A floating to-do widget for Windows and macOS. It syncs tasks with Google Calendar, sends reminders, adds tasks from anywhere with global hotkeys, and hides itself during screen sharing — all while keeping your data on your own computer.",
+    tech: ["Python", "pywebview", "JavaScript", "Google Calendar API"],
+    github: "https://github.com/RashiShah08/desktop-todo",
+    preview: {
+      type: "app",
+      image: "previews/checkera.png",
+      alt: "Checkera's task list, showing today's tasks with categories, due times and subtasks",
+    },
+  },
+  {
     title: "Brainwave-to-Text",
     meta: "EEG Signal Classification · 2024",
     description:
@@ -48,7 +76,6 @@ export const projects = [
     demoLabel: "Live Demo",
   },
   {
-    number: "02",
     title: "ArtVista",
     meta: "Sponsored Client Project · 2024–25",
     description:
@@ -59,7 +86,6 @@ export const projects = [
     demoLabel: "Live Demo",
   },
   {
-    number: "03",
     title: "Blood Donation Management",
     meta: "1st Runner-Up, Ignite IT 7.0 · 2024",
     description:
@@ -70,7 +96,6 @@ export const projects = [
     demoLabel: "Live Demo",
   },
   {
-    number: "04",
     title: "Spiking Neural Networks",
     meta: "Technical Review Paper · 2024",
     description:
