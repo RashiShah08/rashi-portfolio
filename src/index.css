@@ -248,8 +248,10 @@ img, svg {
   background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1.5px no-repeat;
   transition: background-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.ulink:hover {
-  background-size: 100% 1.5px;
+@media (hover: hover) {
+  .ulink:hover {
+    background-size: 100% 1.5px;
+  }
 }
 
 /* ---------- hero ---------- */
@@ -277,7 +279,8 @@ img, svg {
 
 .hero-photo {
   margin: 0;
-  overflow: hidden;
+  /* clip, not hidden: hidden would make the card its own scroll container and freeze the photo's scroll effect */
+  overflow: clip;
 }
 .hero-photo img {
   position: absolute;
@@ -289,8 +292,10 @@ img, svg {
   object-position: 50% 18%;
   transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.hero-photo:hover img {
-  transform: scale(1.03);
+@media (hover: hover) {
+  .hero-photo:hover img {
+    transform: scale(1.03);
+  }
 }
 .hero-photo-chip {
   position: absolute;
@@ -389,14 +394,18 @@ img, svg {
   color: var(--brand);
   transition: fill 0.25s ease, color 0.25s ease;
 }
-.skill-pill:hover {
-  background: var(--maroon);
-  border-color: var(--maroon);
-  color: var(--cream);
+@media (hover: hover) {
+  .skill-pill:hover {
+    background: var(--maroon);
+    border-color: var(--maroon);
+    color: var(--cream);
+  }
 }
-.skill-pill:hover svg {
-  fill: var(--cream);
-  color: var(--cream);
+@media (hover: hover) {
+  .skill-pill:hover svg {
+    fill: var(--cream);
+    color: var(--cream);
+  }
 }
 .skill-card.is-dark .skill-card-head {
   border-color: oklch(0.965 0.014 80 / 0.2);
@@ -417,13 +426,17 @@ img, svg {
   fill: var(--cream);
   color: var(--cream);
 }
-.skill-card.is-dark .skill-pill:hover {
-  background: var(--cream);
-  color: var(--maroon);
+@media (hover: hover) {
+  .skill-card.is-dark .skill-pill:hover {
+    background: var(--cream);
+    color: var(--maroon);
+  }
 }
-.skill-card.is-dark .skill-pill:hover svg {
-  fill: var(--brand);
-  color: var(--brand);
+@media (hover: hover) {
+  .skill-card.is-dark .skill-pill:hover svg {
+    fill: var(--brand);
+    color: var(--brand);
+  }
 }
 
 /* ---------- projects ---------- */
@@ -610,8 +623,10 @@ img, svg {
   border-radius: 10px;
   box-shadow: 0 24px 40px -12px oklch(0 0 0 / 0.6);
 }
-.pv-thumb:hover .pv-shot img {
-  transform: scale(1.04);
+@media (hover: hover) {
+  .pv-thumb:hover .pv-shot img {
+    transform: scale(1.04);
+  }
 }
 .pv-cta {
   position: absolute;
@@ -631,9 +646,11 @@ img, svg {
   box-shadow: 0 10px 24px -8px oklch(0 0 0 / 0.45);
   transition: background 0.25s ease, color 0.25s ease;
 }
-.pv-thumb:hover .pv-cta {
-  background: var(--maroon);
-  color: var(--cream);
+@media (hover: hover) {
+  .pv-thumb:hover .pv-cta {
+    background: var(--maroon);
+    color: var(--cream);
+  }
 }
 
 .pv-backdrop {
@@ -711,9 +728,11 @@ img, svg {
   font-size: 12.5px;
   font-weight: 700;
 }
-.pv-action:hover,
-.pv-close:hover {
-  background: oklch(1 0 0 / 0.1);
+@media (hover: hover) {
+  .pv-action:hover,
+  .pv-close:hover {
+    background: oklch(1 0 0 / 0.1);
+  }
 }
 .pv-close {
   display: flex;
@@ -761,9 +780,11 @@ img, svg {
   font-weight: 700;
   transition: background 0.25s ease, border-color 0.25s ease;
 }
-.resume-pill:hover {
-  background: oklch(0.965 0.014 80 / 0.12);
-  border-color: var(--cream);
+@media (hover: hover) {
+  .resume-pill:hover {
+    background: oklch(0.965 0.014 80 / 0.12);
+    border-color: var(--cream);
+  }
 }
 .hero-resume {
   align-self: center;
@@ -911,9 +932,11 @@ img, svg {
   font-weight: 700;
   transition: transform 0.2s ease, background 0.2s ease;
 }
-.cf-send:hover {
-  background: #fff;
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .cf-send:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
 }
 .cf-send:disabled {
   cursor: progress;
@@ -947,8 +970,10 @@ img, svg {
 .footer-legal a {
   color: var(--maroon);
 }
-.footer-legal a:hover {
-  text-decoration: underline;
+@media (hover: hover) {
+  .footer-legal a:hover {
+    text-decoration: underline;
+  }
 }
 .cf-failed {
   flex-basis: 100%;
@@ -1077,4 +1102,118 @@ img, svg {
   .skill-card:last-child { grid-column: span 6; }
   .skill-pill { height: 34px; font-size: 13px; }
   .proj-meta { max-width: 70%; }
+}
+
+/* ---------- touch screens ----------
+   Phones and tablets get their own versions of the mouse effects above. Nothing here
+   applies to a device with a mouse, so the desktop experience is unchanged. */
+
+@media (hover: none) {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* a small press-down on everything you can tap */
+  .skill-pill,
+  .pv-thumb,
+  .cf-send,
+  .ulink,
+  .pv-action,
+  .pv-close,
+  .cf-again,
+  .footer-legal a {
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .skill-pill:active,
+  .cf-send:active,
+  .ulink:active,
+  .pv-action:active,
+  .pv-close:active,
+  .cf-again:active,
+  .footer-legal a:active {
+    transform: scale(0.95);
+  }
+  .pv-thumb:active {
+    transform: scale(0.98);
+  }
+  .skill-pill:active {
+    background: var(--maroon);
+    border-color: var(--maroon);
+    color: var(--cream);
+  }
+  .skill-pill:active svg {
+    fill: var(--cream);
+    color: var(--cream);
+  }
+  /* rows animated by framer-motion carry inline styles, hence !important */
+  .contact-links a:active {
+    background: oklch(0.965 0.014 80 / 0.24) !important;
+  }
+}
+
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  /* the cursor spotlight becomes a soft light that sweeps across each card as it arrives */
+  .card::after,
+  .card-dark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(105deg, transparent 38%, oklch(1 0 0 / 0.5) 50%, transparent 62%) no-repeat;
+    background-size: 260% 100%;
+    background-position: 120% 0;
+  }
+  .card-dark::after {
+    background-image: linear-gradient(105deg, transparent 38%, oklch(0.965 0.014 80 / 0.16) 50%, transparent 62%);
+  }
+  .card.in-view::after,
+  .card-dark.in-view::after {
+    animation: card-sweep 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+  }
+
+  /* project screenshots drift in slowly while they are on screen, instead of zooming on hover */
+  .pv-thumb .pv-shot img {
+    transition: transform 7s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .pv-thumb.in-view .pv-shot img {
+    transform: scale(1.06);
+  }
+
+  /* the footer icons give a little wave when you reach the bottom */
+  .footer-social.in-view {
+    animation: icon-wave 0.9s ease-in-out 0.3s both;
+  }
+  .footer-social.in-view + .footer-social.in-view {
+    animation-delay: 0.45s;
+  }
+}
+
+/* the photo moves a touch slower than the page, for depth; runs on the compositor, no script */
+@supports (animation-timeline: view()) {
+  @media (hover: none) and (prefers-reduced-motion: no-preference) {
+    .hero-photo img {
+      animation: photo-depth linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+@keyframes card-sweep {
+  0% { opacity: 0; background-position: 120% 0; }
+  15% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; background-position: -20% 0; }
+}
+@keyframes icon-wave {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-14deg) translateY(-4px); }
+  45% { transform: rotate(10deg); }
+  70% { transform: rotate(-5deg); }
+}
+@keyframes photo-depth {
+  from { transform: scale(1.12) translateY(-5%); }
+  to { transform: scale(1.12) translateY(5%); }
 }

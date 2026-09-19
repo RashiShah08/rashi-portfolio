@@ -31,6 +31,32 @@ export default function App() {
     return () => document.removeEventListener("pointermove", onMove);
   }, []);
 
+  // Touch screens have no hover, so their effects run as things scroll into view instead:
+  // each card, project screenshot and the footer icons get "in-view" once (styled in index.css).
+  useEffect(() => {
+    if (!ready || !window.matchMedia("(hover: none)").matches) return;
+    const watch = (selector, options) => {
+      const io = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("in-view");
+            io.unobserve(entry.target);
+          }),
+        options,
+      );
+      document.querySelectorAll(selector).forEach((el) => io.observe(el));
+      return io;
+    };
+    const observers = [
+      // fires when an element's top passes the lower fifth of the screen, however tall it is
+      watch(".card, .card-dark, .pv-thumb", { rootMargin: "0px 0px -20% 0px" }),
+      // the footer sits at the very bottom, so it can never rise that far: wait until it is fully shown
+      watch(".footer-social", { threshold: 1 }),
+    ];
+    return () => observers.forEach((io) => io.disconnect());
+  }, [ready]);
+
   useEffect(() => {
     if (ready) return;
     const t = setTimeout(() => setReady(true), 1900);

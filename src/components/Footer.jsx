@@ -27,7 +27,7 @@ export default function Footer() {
             key={href}
             href={href}
             aria-label={label}
-            className="cursor-hover btn3d"
+            className="cursor-hover btn3d footer-social"
             whileHover={{ y: -4, rotate: -6 }}
             transition={{ type: "spring", stiffness: 300, damping: 15 }}
             style={{
