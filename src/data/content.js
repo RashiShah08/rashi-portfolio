@@ -8,7 +8,7 @@ export const nav = [
 ];
 
 export const stats = [
-  { value: 6, suffix: "", label: "Projects Shipped" },
+  { value: 4, suffix: "", label: "Projects Shipped" },
   { value: 2, suffix: "", label: "Internships" },
 ];
 
@@ -97,26 +97,6 @@ export const projects = [
       alt: "The Cortical Decoder live page: a 3D brain between the replay controls and the decoder's evidence panel",
       loading: "Waking the server - the free host sleeps when idle, so this can take up to a minute…",
     },
-  },
-  {
-    title: "ArtVista",
-    meta: "Sponsored Client Project · 2024-25",
-    description:
-      "A full-stack AR commerce platform for a live client, with a recommender system that personalises painting suggestions per user - turning a static catalogue into a discovery-driven storefront. Sole developer end to end.",
-    tech: ["HTML / CSS / JS", "Python", "AR", "ML"],
-    github: "#",
-    demo: "#",
-    demoLabel: "Live Demo",
-  },
-  {
-    title: "Spiking Neural Networks",
-    meta: "Technical Review Paper · 2024",
-    description:
-      "A technical review spanning SNN architectures, neuron models, encoding methods, and neuromorphic hardware like Intel Loihi - currently in prep for journal submission.",
-    tech: ["Neuromorphic Computing", "AI Research"],
-    github: "#",
-    demo: "#",
-    demoLabel: "Read Paper",
   },
 ];
 
