@@ -1,12 +1,12 @@
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 
-const lead = "I'm Rashi — a computer engineer from Mumbai with a creative streak I never really switch off.";
+const lead = "I'm Rashi - a computer engineer from Mumbai with a creative streak I never really switch off.";
 
 const paragraphs = [
   "I completed my Diploma in Computer Engineering at SVKM's Shri Bhagubhai Mafatlal Polytechnic and College of Engineering, and I'm now continuing my engineering studies at DJ Sanghvi College of Engineering.",
-  "Away from the screen you'll usually find me dancing, designing something, or chasing whatever creative idea has caught my attention. That same instinct follows me into college life — I led design for Spectrum 3.0, headed documentation for the Spectrum Hackathon, and volunteered at Spectrum 2.0 and Enigma.",
-  "Where I'm headed: the point where machine learning meets real products — software that's thoughtful, a little beautiful, and simple enough for anyone to use.",
+  "Away from the screen you'll usually find me dancing, designing something, or chasing whatever creative idea has caught my attention. That same instinct follows me into college life - I led design for Spectrum 3.0, headed documentation for the Spectrum Hackathon, and volunteered at Spectrum 2.0 and Enigma.",
+  "Where I'm headed: the point where machine learning meets real products - software that's thoughtful, a little beautiful, and simple enough for anyone to use.",
 ];
 
 const side = [
@@ -30,7 +30,7 @@ export default function About() {
                 {p}
               </p>
             ))}
-            <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600, fontSize: 24, color: "var(--maroon)" }}>— Rashi</p>
+            <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600, fontSize: 24, color: "var(--maroon)" }}>- Rashi</p>
           </Reveal>
 
           {side.map((c, i) => (

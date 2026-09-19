@@ -38,9 +38,9 @@ export const skillGroups = [
 export const projects = [
   {
     title: "The Record Atlas",
-    meta: "Web App · 2025–26",
+    meta: "Web App · 2025-26",
     description:
-      "An interactive atlas of 47 record-breaking places — world landmarks and every Indian state and union territory — plotted at their real coordinates. Includes Ctrl+K search, shareable links, and a guide I wrote from scratch that answers questions and cites the records it used, with no API keys.",
+      "An interactive atlas of 47 record-breaking places - world landmarks and every Indian state and union territory - plotted at their real coordinates. Includes Ctrl+K search, shareable links, and a guide I wrote from scratch that answers questions and cites the records it used, with no API keys.",
     tech: ["Python", "FastAPI", "JavaScript", "Leaflet.js", "TF-IDF Search"],
     github: "https://github.com/RashiShah08/Interactive-Geo-Explorer",
     demo: "https://the-record-atlas.vercel.app/",
@@ -56,7 +56,7 @@ export const projects = [
     title: "Checkera",
     meta: "Desktop App · 2026",
     description:
-      "A floating to-do widget for Windows and macOS. It syncs tasks with Google Calendar, sends reminders, adds tasks from anywhere with global hotkeys, and hides itself during screen sharing — all while keeping your data on your own computer.",
+      "A floating to-do widget for Windows and macOS. It syncs tasks with Google Calendar, sends reminders, adds tasks from anywhere with global hotkeys, and hides itself during screen sharing - all while keeping your data on your own computer.",
     tech: ["Python", "pywebview", "JavaScript", "Google Calendar API"],
     github: "https://github.com/RashiShah08/desktop-todo",
     preview: {
@@ -66,10 +66,26 @@ export const projects = [
     },
   },
   {
+    title: "BloodConnect",
+    meta: "Web App · Ignite IT 7.0 Runner-Up",
+    description:
+      "Connects hospitals that urgently need blood with nearby donors who can give. A hospital posts a request and compatible donors within a few kilometres get an email. A donor takes an 11-question health check, pledges a unit and follows live directions to the hospital. The hospital sees their arrival time but never their exact location. I started it at a hackathon and later rebuilt it to be secure, with more than 400 tests.",
+    tech: ["Python", "Flask", "PostgreSQL", "Leaflet.js", "Gmail API", "Playwright"],
+    github: "https://github.com/RashiShah08/Blood-Donation",
+    demo: "https://bloodconnectapp.vercel.app/",
+    demoLabel: "Live Demo",
+    preview: {
+      type: "site",
+      url: "https://bloodconnectapp.vercel.app/",
+      image: "previews/bloodconnect.png",
+      alt: "BloodConnect home page: “Someone near you needs your blood group today”, beside a map of a donor on the way to a hospital",
+    },
+  },
+  {
     title: "Brainwave-to-Text",
     meta: "EEG Signal Classification · 2024",
     description:
-      "An end-to-end EEG classification pipeline — signal ingestion, feature extraction, neural pattern classification — mapping cognitive states to text at ~92% accuracy. Built solo, from signal theory to a working model.",
+      "An end-to-end EEG classification pipeline - signal ingestion, feature extraction, neural pattern classification - mapping cognitive states to text at ~92% accuracy. Built solo, from signal theory to a working model.",
     tech: ["Python", "Machine Learning", "Signal Processing"],
     github: "#",
     demo: "#",
@@ -77,20 +93,10 @@ export const projects = [
   },
   {
     title: "ArtVista",
-    meta: "Sponsored Client Project · 2024–25",
+    meta: "Sponsored Client Project · 2024-25",
     description:
-      "A full-stack AR commerce platform for a live client, with a recommender system that personalises painting suggestions per user — turning a static catalogue into a discovery-driven storefront. Sole developer end to end.",
+      "A full-stack AR commerce platform for a live client, with a recommender system that personalises painting suggestions per user - turning a static catalogue into a discovery-driven storefront. Sole developer end to end.",
     tech: ["HTML / CSS / JS", "Python", "AR", "ML"],
-    github: "#",
-    demo: "#",
-    demoLabel: "Live Demo",
-  },
-  {
-    title: "Blood Donation Management",
-    meta: "1st Runner-Up, Ignite IT 7.0 · 2024",
-    description:
-      "A complete donor-matching system built in 24 hours — real-time availability search, donor-recipient matching, emergency coordination workflows. Owned backend and frontend solo, zero cut corners.",
-    tech: ["Full-Stack Development"],
     github: "#",
     demo: "#",
     demoLabel: "Live Demo",
@@ -99,7 +105,7 @@ export const projects = [
     title: "Spiking Neural Networks",
     meta: "Technical Review Paper · 2024",
     description:
-      "A technical review spanning SNN architectures, neuron models, encoding methods, and neuromorphic hardware like Intel Loihi — currently in prep for journal submission.",
+      "A technical review spanning SNN architectures, neuron models, encoding methods, and neuromorphic hardware like Intel Loihi - currently in prep for journal submission.",
     tech: ["Neuromorphic Computing", "AI Research"],
     github: "#",
     demo: "#",
@@ -109,7 +115,7 @@ export const projects = [
 
 export const timeline = [
   {
-    date: "2026 – Present",
+    date: "2026 - Present",
     kind: "Education",
     title: "Engineering, DJ Sanghvi College of Engineering",
     description: "Continuing my engineering studies in Mumbai after completing my diploma.",
@@ -118,35 +124,35 @@ export const timeline = [
     date: "Mar 2023",
     kind: "Education",
     title: "10th Grade, ICSE",
-    description: "NSM School, Mumbai — Percentage: 94%",
+    description: "NSM School, Mumbai - Percentage: 94%",
   },
   {
-    date: "2022 – Jun 2026",
+    date: "2022 - Jun 2026",
     kind: "Education",
     title: "Diploma in Computer Engineering",
     description:
-      "SVKM's Shri Bhagubhai Mafatlal Polytechnic and College of Engineering, Mumbai — Aggregate: 96.47%",
+      "SVKM's Shri Bhagubhai Mafatlal Polytechnic and College of Engineering, Mumbai - Aggregate: 96.47%",
   },
   {
     date: "2024",
     kind: "Achievement",
-    title: "1st Runner-Up — Ignite IT 7.0",
+    title: "1st Runner-Up - Ignite IT 7.0",
     description:
-      "Built the Blood Donation Management System solo in a 24-hour hackathon, ranking 1st Runner-Up against the full field.",
+      "Built BloodConnect, a blood donor matching app, solo in a 24-hour hackathon, ranking 1st Runner-Up against the full field.",
   },
   {
     date: "Jun 2025",
     kind: "Experience",
     title: "Operations Intern",
     description:
-      "3Folks Media, Mumbai — built a vetted pipeline of 277+ creators, wrote reel concepts, and translated scripts English-to-Hindi for client campaigns.",
+      "3Folks Media, Mumbai - built a vetted pipeline of 277+ creators, wrote reel concepts, and translated scripts English-to-Hindi for client campaigns.",
   },
   {
-    date: "Dec 2025 – Jun 2026",
+    date: "Dec 2025 - Jun 2026",
     kind: "Experience",
     title: "Full-Stack Development Intern",
     description:
-      "Agkiya Technology and Consulting LLP, Mumbai — own 6+ end-to-end modules on an AI-powered business platform: inventory, quotations, dashboards, and automated documents, with PostgreSQL, Redis, Celery, Temporal, and Docker underneath.",
+      "Agkiya Technology and Consulting LLP, Mumbai - own 6+ end-to-end modules on an AI-powered business platform: inventory, quotations, dashboards, and automated documents, with PostgreSQL, Redis, Celery, Temporal, and Docker underneath.",
   },
   {
     date: "Ongoing",
@@ -160,7 +166,7 @@ export const timeline = [
 export const timelineColumns = [
   {
     title: "Education & Wins",
-    items: ["Engineering, DJ Sanghvi College of Engineering", "Diploma in Computer Engineering", "1st Runner-Up — Ignite IT 7.0", "10th Grade, ICSE"],
+    items: ["Engineering, DJ Sanghvi College of Engineering", "Diploma in Computer Engineering", "1st Runner-Up - Ignite IT 7.0", "10th Grade, ICSE"],
   },
   {
     title: "Experience & Leadership",

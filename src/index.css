@@ -31,7 +31,7 @@
   box-sizing: border-box;
 }
 
-/* clip (not hidden) so the page never becomes its own scroll container — that is what breaks position: sticky */
+/* clip (not hidden) so the page never becomes its own scroll container - that is what breaks position: sticky */
 html {
   overflow-x: clip;
 }

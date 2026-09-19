@@ -8,7 +8,10 @@ const ease = [0.19, 1, 0.22, 1];
 
 const external = (url) => (url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
 const addressOf = (project) =>
-  project.preview.type === "site" ? new URL(project.preview.url).host : `${project.title} · desktop app`;
+  project.preview.url ? new URL(project.preview.url).host : `${project.title} · desktop app`;
+
+const ctaLabel = { site: "Try it live", app: "View app" };
+const thumbLabel = { site: "Try {t} live", app: "View {t} preview" };
 
 function WindowBar({ project, children }) {
   return (
@@ -26,20 +29,19 @@ function WindowBar({ project, children }) {
 
 function PreviewThumb({ project, onOpen }) {
   const { preview } = project;
-  const live = preview.type === "site";
   return (
     <button
       type="button"
       className={`pv-thumb is-${preview.type} cursor-hover`}
       onClick={() => onOpen(project)}
-      aria-label={live ? `Try ${project.title} live` : `View ${project.title} preview`}
+      aria-label={thumbLabel[preview.type].replace("{t}", project.title)}
     >
       <WindowBar project={project} />
       <span className="pv-shot">
         <img src={preview.image} alt={preview.alt} loading="lazy" />
       </span>
       <span className="pv-cta">
-        {live ? "Try it live" : "View app"} <ArrowIcon style={{ width: 14, height: 14 }} />
+        {ctaLabel[preview.type]} <ArrowIcon style={{ width: 14, height: 14 }} />
       </span>
     </button>
   );
@@ -86,7 +88,7 @@ function PreviewModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <WindowBar project={project}>
-          {preview.type === "site" && (
+          {preview.url && (
             <a className="pv-action" href={preview.url} {...external(preview.url)}>
               <span className="pv-action-label">Open in new tab</span> <ArrowIcon style={{ width: 14, height: 14 }} />
             </a>
@@ -103,7 +105,7 @@ function PreviewModal({ project, onClose }) {
                 src={preview.url}
                 title={`${project.title}, running live`}
                 onLoad={() => setLoaded(true)}
-                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation-to-custom-protocols"
                 referrerPolicy="no-referrer"
               />
             </>

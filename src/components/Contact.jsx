@@ -29,7 +29,7 @@ export default function Contact() {
         >
           <div>
             <span className="eyebrow" style={{ color: "var(--cream)", opacity: 0.65 }}>
-              05 — Get in touch
+              05 - Get in touch
             </span>
             <h2
               style={{
