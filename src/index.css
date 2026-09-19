@@ -650,8 +650,10 @@ img, svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 24px;
   color: oklch(0.82 0.01 70);
   font-size: 14px;
+  text-align: center;
 }
 .pv-modal.is-app .pv-body {
   padding: 28px;

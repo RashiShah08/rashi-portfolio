@@ -82,14 +82,21 @@ export const projects = [
     },
   },
   {
-    title: "Brainwave-to-Text",
-    meta: "EEG Signal Classification · 2024",
+    title: "Cortical Decoder",
+    meta: "EEG Machine Learning · 2024-26",
     description:
-      "An end-to-end EEG classification pipeline - signal ingestion, feature extraction, neural pattern classification - mapping cognitive states to text at ~92% accuracy. Built solo, from signal theory to a working model.",
-    tech: ["Python", "Machine Learning", "Signal Processing"],
-    github: "#",
-    demo: "#",
+      "Reads 64-channel EEG recordings and works out which movement a person was imagining - left fist, right fist, both fists or both feet. I compared nine decoders, from classical Riemannian methods to neural networks, across 105 people and report the real numbers: about 64% on left vs right, where guessing gets 50%. The live page replays a recording on a 3D brain as it decodes.",
+    tech: ["Python", "scikit-learn", "PyTorch", "MNE", "Flask", "Three.js"],
+    github: "https://github.com/RashiShah08/brainwave-to-text",
+    demo: "https://brainwave-to-text.onrender.com/live",
     demoLabel: "Live Demo",
+    preview: {
+      type: "site",
+      url: "https://brainwave-to-text.onrender.com/live",
+      image: "previews/brainwave.png",
+      alt: "The Cortical Decoder live page: a 3D brain between the replay controls and the decoder's evidence panel",
+      loading: "Waking the server - the free host sleeps when idle, so this can take up to a minute…",
+    },
   },
   {
     title: "ArtVista",
@@ -134,13 +141,6 @@ export const timeline = [
       "SVKM's Shri Bhagubhai Mafatlal Polytechnic and College of Engineering, Mumbai - Aggregate: 96.47%",
   },
   {
-    date: "2024",
-    kind: "Achievement",
-    title: "1st Runner-Up - Ignite IT 7.0",
-    description:
-      "Built BloodConnect, a blood donor matching app, solo in a 24-hour hackathon, ranking 1st Runner-Up against the full field.",
-  },
-  {
     date: "Jun 2025",
     kind: "Experience",
     title: "Operations Intern",
@@ -155,22 +155,22 @@ export const timeline = [
       "Agkiya Technology and Consulting LLP, Mumbai - own 6+ end-to-end modules on an AI-powered business platform: inventory, quotations, dashboards, and automated documents, with PostgreSQL, Redis, Celery, Temporal, and Docker underneath.",
   },
   {
-    date: "Ongoing",
+    date: "2022 - 2026",
     kind: "Leadership",
-    title: "Design & Documentation Leadership",
+    title: "Student Committees",
     description:
-      "Design Head, Spectrum 3.0 · Documentation Head, Spectrum Hackathon · Volunteer, Spectrum 2.0 & Enigma.",
+      "During my diploma I was part of the student committees that host our college's events - Design Head for Spectrum 3.0, Documentation Head for the Spectrum Hackathon, and a volunteer at Spectrum 2.0 and Enigma.",
   },
 ];
 
 export const timelineColumns = [
   {
-    title: "Education & Wins",
-    items: ["Engineering, DJ Sanghvi College of Engineering", "Diploma in Computer Engineering", "1st Runner-Up - Ignite IT 7.0", "10th Grade, ICSE"],
+    title: "Education",
+    items: ["Engineering, DJ Sanghvi College of Engineering", "Diploma in Computer Engineering", "10th Grade, ICSE"],
   },
   {
     title: "Experience & Leadership",
-    items: ["Full-Stack Development Intern", "Operations Intern", "Design & Documentation Leadership"],
+    items: ["Full-Stack Development Intern", "Operations Intern", "Student Committees"],
   },
 ].map((col) => ({ ...col, items: col.items.map((t) => timeline.find((x) => x.title === t)) }));
 

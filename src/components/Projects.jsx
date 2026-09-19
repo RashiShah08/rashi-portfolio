@@ -100,7 +100,7 @@ function PreviewModal({ project, onClose }) {
         <div className="pv-body">
           {preview.type === "site" ? (
             <>
-              {!loaded && <div className="pv-loading">Loading the live site…</div>}
+              {!loaded && <div className="pv-loading">{preview.loading ?? "Loading the live site…"}</div>}
               <iframe
                 src={preview.url}
                 title={`${project.title}, running live`}
