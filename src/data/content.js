@@ -161,3 +161,11 @@ export const contact = {
   github: "github.com/RashiShah08",
   githubUrl: "https://github.com/RashiShah08",
 };
+
+// The public copy leaves out the phone number and home address that the original carries.
+export const resume = {
+  file: "Rashi-Shah-Resume.pdf",
+  image: "resume-preview.png",
+  pages: 1,
+  size: "119 KB",
+};

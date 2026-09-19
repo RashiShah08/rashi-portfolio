@@ -41,6 +41,14 @@ export function ArrowIcon(props) {
   );
 }
 
+export function DownloadIcon(props) {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+      <path d="M12 4v11m-5-5 5 5 5-5M5 20h14" />
+    </svg>
+  );
+}
+
 export function MenuIcon(props) {
   return (
     <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>

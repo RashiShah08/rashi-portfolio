@@ -3,7 +3,8 @@ import { stats } from "../data/content";
 import Counter from "./Counter";
 import Magnetic from "./Magnetic";
 import SplitText from "./SplitText";
-import { ArrowIcon, PinIcon } from "./Icons";
+import { ArrowIcon, DownloadIcon, PinIcon } from "./Icons";
+import { openResume } from "./Resume";
 
 const ease = [0.22, 1, 0.36, 1];
 const pop = (delay) => ({
@@ -55,6 +56,9 @@ export default function Hero() {
             >
               Contact Me
             </Magnetic>
+            <button type="button" className="ulink hero-resume cursor-hover" onClick={openResume}>
+              <DownloadIcon style={{ width: 16, height: 16 }} /> Resume
+            </button>
           </div>
         </motion.div>
 

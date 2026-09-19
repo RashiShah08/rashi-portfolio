@@ -4,6 +4,7 @@ import { nav } from "../data/content";
 import Magnetic from "./Magnetic";
 import { MenuIcon, CloseIcon } from "./Icons";
 import Monogram from "./Monogram";
+import { openResume } from "./Resume";
 
 export default function Navbar() {
   const [active, setActive] = useState("#home");
@@ -82,6 +83,10 @@ export default function Navbar() {
           ))}
         </nav>
 
+        <div className="nav-actions">
+        <Magnetic as="button" type="button" onClick={openResume} className="resume-pill">
+          Resume
+        </Magnetic>
         <Magnetic
           as="a"
           href="#contact"
@@ -101,6 +106,7 @@ export default function Navbar() {
         >
           Contact Me
         </Magnetic>
+        </div>
 
         <button
           className="cursor-hover"
@@ -172,16 +178,39 @@ export default function Navbar() {
                   {item.label}
                 </a>
               ))}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openResume();
+                }}
+                style={{
+                  fontFamily: "Sora",
+                  fontWeight: 700,
+                  fontSize: 20,
+                  color: "var(--maroon)",
+                  padding: "10px 6px",
+                  textAlign: "left",
+                }}
+              >
+                Resume
+              </button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <style>{`
-        @media (min-width: 901px) {
-          .contact-pill { display: flex !important; }
+        @media (min-width: 1001px) {
+          .contact-pill,
+          .resume-pill { display: flex !important; }
         }
-        @media (max-width: 900px) {
+        /* seven links plus the name and the pill: tighten them before they touch */
+        @media (min-width: 1001px) and (max-width: 1180px) {
+          .navlinks { gap: 2px !important; }
+          .navlinks a { padding: 8px 10px !important; font-size: 13.5px !important; }
+        }
+        @media (max-width: 1000px) {
           .navlinks { display: none !important; }
           #mobile-menu-btn { display: flex !important; }
         }

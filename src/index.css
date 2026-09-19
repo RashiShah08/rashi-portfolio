@@ -36,6 +36,40 @@ html {
   overflow-x: clip;
 }
 
+/* scrollbars in the site's own colours: maroon on the page, gold inside the dark preview windows */
+/* Firefox only: Chrome ignores the ::-webkit-scrollbar pill below whenever scrollbar-color is set */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: var(--maroon) var(--bg);
+    scrollbar-width: thin;
+  }
+  .pv-doc {
+    scrollbar-color: var(--gold) oklch(0.26 0.012 50);
+  }
+}
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--bg);
+  border-radius: 999px;
+  background: var(--maroon);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--maroon-2);
+}
+.pv-doc::-webkit-scrollbar-track {
+  background: oklch(0.26 0.012 50);
+}
+.pv-doc::-webkit-scrollbar-thumb {
+  border-color: oklch(0.26 0.012 50);
+  background: var(--gold);
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -707,6 +741,66 @@ img, svg {
   }
 }
 
+/* ---------- resume ---------- */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.resume-pill {
+  display: none;
+  align-items: center;
+  height: 46px;
+  padding: 0 22px;
+  border: 1.5px solid oklch(0.965 0.014 80 / 0.45);
+  border-radius: 999px;
+  color: var(--cream);
+  font-family: "Sora", sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.resume-pill:hover {
+  background: oklch(0.965 0.014 80 / 0.12);
+  border-color: var(--cream);
+}
+.hero-resume {
+  align-self: center;
+  margin-left: 6px;
+  color: var(--maroon);
+  font-size: 15px;
+}
+.hero-resume:focus {
+  outline: none;
+}
+.hero-resume:focus-visible,
+.resume-pill:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 5px;
+  border-radius: 999px;
+}
+
+/* the resume in the preview window: a paper page you scroll, on a dark desk */
+.pv-modal.is-doc {
+  width: min(920px, 100%);
+}
+.pv-doc {
+  align-self: stretch;
+  width: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(12px, 3vw, 32px);
+  background: oklch(0.26 0.012 50);
+}
+.pv-doc img {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 30px 60px -20px oklch(0 0 0 / 0.6);
+}
+
 /* ---------- contact ---------- */
 
 /* grid children default to min-width:auto, so a long email address would push its column past the card edge */
@@ -715,6 +809,168 @@ img, svg {
 }
 .contact-grid a span {
   overflow-wrap: anywhere;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+  max-width: 420px;
+}
+
+/* the form sits on the maroon card as a lighter panel */
+.cf {
+  padding: clamp(22px, 2.4vw, 34px);
+  border: 1px solid oklch(0.965 0.014 80 / 0.16);
+  border-radius: 26px;
+  background: oklch(0.965 0.014 80 / 0.08);
+}
+.cf form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cf-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.cf-label {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.cf-field input,
+.cf-field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid oklch(0.965 0.014 80 / 0.22);
+  border-radius: 14px;
+  background: oklch(0.2 0.05 22 / 0.35);
+  color: var(--cream);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.cf-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.cf-field input::placeholder,
+.cf-field textarea::placeholder {
+  color: oklch(0.965 0.014 80 / 0.4);
+}
+.cf-field input:focus,
+.cf-field textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: oklch(0.2 0.05 22 / 0.5);
+}
+.cf-field.has-error input,
+.cf-field.has-error textarea {
+  border-color: oklch(0.72 0.14 30);
+}
+.cf-error {
+  color: oklch(0.86 0.09 40);
+  font-size: 13px;
+}
+.cf-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.cf-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.cf-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--maroon);
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.cf-send:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+.cf-send:disabled {
+  cursor: progress;
+  opacity: 0.7;
+  transform: none;
+}
+.cf-send:focus-visible,
+.cf-again:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+.cf-failed {
+  flex-basis: 100%;
+  color: oklch(0.86 0.09 40);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cf-failed a {
+  color: var(--cream);
+  text-decoration: underline;
+}
+.cf-done {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 24px 0;
+  color: var(--cream);
+}
+.cf-done-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--maroon-dark);
+  font-size: 24px;
+  font-weight: 700;
+}
+.cf-done h3 {
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+}
+.cf-done p {
+  opacity: 0.8;
+}
+.cf-again {
+  margin-top: 8px;
+  padding: 10px 0;
+  color: var(--gold);
+  font-family: "Sora", sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* ---------- journey ---------- */
@@ -787,7 +1043,9 @@ img, svg {
   .hero-photo { aspect-ratio: 4 / 5; }
   .hero-stats { gap: 12px; }
   .about-text { grid-column: auto; grid-row: auto; }
-  .contact-grid { padding: 28px !important; }
+  .contact-grid { padding: 28px 20px !important; }
+  .cf-row { grid-template-columns: minmax(0, 1fr); }
+  .cf-send { width: 100%; justify-content: center; }
   .skill-cards { gap: 12px; }
   .skill-card,
   .skill-card:nth-child(n + 4),

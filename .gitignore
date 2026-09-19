@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Secrets (database URL, Gmail tokens) live only in these files and in Vercel settings
+.env
+.env.*
+!.env.example
