@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { nav } from "../data/content";
 import Magnetic from "./Magnetic";
-import { MenuIcon, CloseIcon } from "./Icons";
+import { MenuIcon } from "./Icons";
+import MobileMenu from "./MobileMenu";
 import Monogram from "./Monogram";
 import { openResume } from "./Resume";
 
@@ -109,12 +110,15 @@ export default function Navbar() {
         </div>
 
         <button
+          type="button"
           className="cursor-hover"
+          aria-label="Open menu"
+          aria-expanded={open}
           onClick={() => setOpen(true)}
           style={{
             display: "none",
-            width: 40,
-            height: 40,
+            width: 44,
+            height: 44,
             borderRadius: "50%",
             background: "oklch(0.965 0.014 80 / 0.12)",
             color: "var(--cream)",
@@ -127,78 +131,7 @@ export default function Navbar() {
         </button>
       </motion.div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: "oklch(0.24 0.02 50 / 0.5)",
-              zIndex: 200,
-            }}
-            onClick={() => setOpen(false)}
-          >
-            <motion.div
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                margin: "20px",
-                background: "var(--cream)",
-                borderRadius: 28,
-                padding: 28,
-                display: "flex",
-                flexDirection: "column",
-                gap: 6,
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <button onClick={() => setOpen(false)} style={{ color: "var(--maroon)" }}>
-                  <CloseIcon />
-                </button>
-              </div>
-              {nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  style={{
-                    fontFamily: "Sora",
-                    fontWeight: 700,
-                    fontSize: 20,
-                    color: "var(--ink)",
-                    padding: "10px 6px",
-                  }}
-                >
-                  {item.label}
-                </a>
-              ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  openResume();
-                }}
-                style={{
-                  fontFamily: "Sora",
-                  fontWeight: 700,
-                  fontSize: 20,
-                  color: "var(--maroon)",
-                  padding: "10px 6px",
-                  textAlign: "left",
-                }}
-              >
-                Resume
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <MobileMenu open={open} active={active} setOpen={setOpen} />
 
       <style>{`
         @media (min-width: 1001px) {

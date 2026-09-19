@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowIcon, CloseIcon, DownloadIcon } from "./Icons";
+import { lockScroll } from "../scrollLock";
 
 const ease = [0.19, 1, 0.22, 1];
 
@@ -34,14 +35,13 @@ export function PreviewModal({ project, onClose }) {
 
   useEffect(() => {
     const opener = document.activeElement;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const unlock = lockScroll();
     closeRef.current?.focus();
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = previousOverflow;
+      unlock();
       opener?.focus?.();
     };
   }, [onClose]);

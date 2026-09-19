@@ -12,6 +12,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
 import Loader from "./components/Loader";
+import { lockScroll } from "./scrollLock";
 
 export default function App() {
   const [ready, setReady] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -63,9 +64,8 @@ export default function App() {
     return () => clearTimeout(t);
   }, [ready]);
 
-  useEffect(() => {
-    document.body.style.overflow = ready ? "" : "hidden";
-  }, [ready]);
+  // the page stays still behind the loading screen
+  useEffect(() => (ready ? undefined : lockScroll()), [ready]);
 
   useEffect(() => {
     if (!ready) return;

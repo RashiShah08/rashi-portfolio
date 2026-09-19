@@ -1217,3 +1217,178 @@ img, svg {
   from { transform: scale(1.12) translateY(-5%); }
   to { transform: scale(1.12) translateY(5%); }
 }
+
+/* ---------- phone and tablet menu ---------- */
+
+.mm {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  padding: max(16px, env(safe-area-inset-top)) 22px max(22px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(120% 60% at 100% 0%, oklch(0.42 0.1 22 / 0.9), transparent 60%),
+    linear-gradient(165deg, var(--maroon-2), var(--maroon) 45%, var(--maroon-dark));
+  color: var(--cream);
+}
+.mm-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+.mm-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cream);
+  font-family: var(--serif);
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 600;
+}
+.mm-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: oklch(0.965 0.014 80 / 0.12);
+  color: var(--cream);
+}
+.mm-close:focus-visible,
+.mm-links a:focus-visible,
+.mm-pill:focus-visible,
+.mm-social a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.mm-links {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px 0;
+}
+.mm-links a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 4px;
+  border-bottom: 1px solid oklch(0.965 0.014 80 / 0.12);
+  color: var(--cream);
+}
+.mm-num {
+  width: 26px;
+  color: oklch(0.965 0.014 80 / 0.45);
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  font-variant-numeric: tabular-nums;
+}
+.mm-label {
+  font-family: var(--serif);
+  font-size: clamp(32px, 9vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  transition: transform 0.2s ease;
+}
+.mm-links a:active .mm-label {
+  transform: translateX(6px);
+}
+.mm-links a.is-active .mm-label,
+.mm-links a.is-active .mm-num {
+  color: var(--gold);
+}
+.mm-links a.is-active .mm-label {
+  font-style: italic;
+}
+.mm-here {
+  margin-left: auto;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.mm-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.mm-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.mm-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border-radius: 999px;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+.mm-pill:active {
+  transform: scale(0.96);
+}
+.mm-pill.is-outline {
+  border: 1.5px solid oklch(0.965 0.014 80 / 0.5);
+  color: var(--cream);
+}
+.mm-pill.is-solid {
+  background: var(--cream);
+  color: var(--maroon);
+}
+.mm-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mm-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: oklch(0.965 0.014 80 / 0.12);
+  color: var(--cream);
+}
+.mm-mail {
+  min-width: 0;
+  margin-left: 4px;
+  overflow: hidden;
+  color: oklch(0.965 0.014 80 / 0.6);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* smaller phones (iPhone SE and similar): slightly tighter so the whole menu fits without scrolling */
+@media (max-height: 720px) {
+  .mm-top { min-height: 56px; }
+  .mm-links { padding: 8px 0; }
+  .mm-links a { padding: 7px 4px; }
+  .mm-label { font-size: 30px; }
+  .mm-foot { gap: 12px; }
+  .mm-pill { height: 46px; }
+}
+/* landscape phones: the links sit in two columns */
+@media (max-height: 560px) and (orientation: landscape) {
+  .mm { padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .mm-top { min-height: 48px; }
+  .mm-links { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; align-content: center; }
+  .mm-label { font-size: 24px; }
+  .mm-links a { padding: 5px 4px; }
+  .mm-here { display: none; }
+  .mm-foot { flex-direction: row; align-items: center; justify-content: space-between; }
+  .mm-actions { flex: 0 1 360px; }
+  .mm-mail { display: none; }
+}
