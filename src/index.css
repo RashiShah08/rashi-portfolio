@@ -925,6 +925,31 @@ img, svg {
   outline: 2px solid var(--gold);
   outline-offset: 4px;
 }
+.cf-note {
+  flex: 1 1 220px;
+  color: oklch(0.965 0.014 80 / 0.6);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.cf-note a {
+  color: var(--cream);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.footer-legal {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.footer-legal a {
+  color: var(--maroon);
+}
+.footer-legal a:hover {
+  text-decoration: underline;
+}
 .cf-failed {
   flex-basis: 100%;
   color: oklch(0.86 0.09 40);

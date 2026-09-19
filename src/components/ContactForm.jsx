@@ -155,6 +155,10 @@ export default function ContactForm() {
                 {status === "sending" ? "Sending…" : "Send message"}
                 {status !== "sending" && <ArrowIcon style={{ width: 16, height: 16 }} />}
               </button>
+              <p className="cf-note">
+                Your message is stored privately and only used to reply to you -{" "}
+                <a href="privacy.html">privacy policy</a>.
+              </p>
               {status === "limited" && (
                 <p className="cf-failed" role="alert">
                   That&apos;s a few messages in a short time - please try again in a little while, or email me at{" "}

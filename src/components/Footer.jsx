@@ -11,6 +11,11 @@ export default function Footer() {
         <div>
           <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600, fontSize: 28, color: "var(--maroon)" }}>Rashi Shah</div>
           <div style={{ fontSize: 13, color: "var(--ink-muted)", fontWeight: 600 }}>&copy; 2026 &middot; Built with intent in Mumbai</div>
+          <div className="footer-legal">
+            <a href="privacy.html">Privacy</a>
+            <span aria-hidden="true">&middot;</span>
+            <a href="terms.html">Terms</a>
+          </div>
         </div>
       </div>
       <div style={{ display: "flex", gap: 14 }}>
