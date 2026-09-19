@@ -223,3 +223,18 @@ test("a __proto__ key cannot change how the request is handled", async () => {
   assert.equal(mailed.length, 1, "treated as a real message, not as a bot");
   assert.equal({}.botcheck, undefined);
 });
+
+test("the email builder resists header injection even with raw, unvalidated input", () => {
+  const evil = {
+    name: "Eve\r\nBcc: victim@evil.com",
+    email: "reply@good.co\r\nBcc: leak@evil.com\r\nX-Injected: 1",
+    message: "line one\r\nline two",
+  };
+  const raw = buildMessage({ from: "me@gmail.com\r\nBcc: a@b.c", to: "me@gmail.com", values: evil });
+  const headers = raw.split("\r\n\r\n")[0];
+  assert.ok(!/^Bcc:/im.test(headers), "no Bcc header may be injected");
+  assert.ok(!/^X-Injected:/im.test(headers), "no arbitrary header may be injected");
+  assert.equal((headers.match(/^Reply-To:/gim) || []).length, 1, "exactly one Reply-To line");
+  assert.match(headers, /^Reply-To: reply@good\.co\s*Bcc: leak@evil\.comX-Injected: 1$/m.test(headers) ? /x/ : /^Reply-To: [^\r\n]+$/m);
+  assert.match(headers, /^Subject: =\?UTF-8\?B\?/m, "subject stays RFC2047-encoded");
+});

@@ -5,22 +5,27 @@ const b64 = (text) => Buffer.from(text, "utf8").toString("base64");
 const b64url = (text) => b64(text).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 // RFC 2047, so names with any script survive in the subject; CR/LF can never reach a header.
 const header = (text) => `=?UTF-8?B?${b64(String(text).replace(/[\r\n]+/g, " "))}?=`;
+// Defence in depth for a raw header value (e.g. Reply-To): strip every character that could
+// start a new header line, so a crafted address can never inject Bcc/extra headers. The caller
+// already validates, but the builder must be safe even if reached with unvalidated input.
+const headerSafe = (text) => String(text).replace(/[\r\n\u0000-\u001F\u007F]/g, "").slice(0, 320);
 
 export function buildMessage({ from, to, values }) {
+  const email = headerSafe(values.email);
   const body = [
     `New message from your portfolio.`,
     ``,
     `Name:  ${values.name}`,
-    `Email: ${values.email}`,
+    `Email: ${email}`,
     ``,
     values.message,
     ``,
     `- Reply to this email to answer ${values.name} directly.`,
   ].join("\r\n");
   return [
-    `From: ${header("Portfolio contact form")} <${from}>`,
-    `To: ${to}`,
-    `Reply-To: ${values.email}`,
+    `From: ${header("Portfolio contact form")} <${headerSafe(from)}>`,
+    `To: ${headerSafe(to)}`,
+    `Reply-To: ${email}`,
     `Subject: ${header(`Portfolio message from ${values.name}`.slice(0, 150))}`,
     "MIME-Version: 1.0",
     "Content-Type: text/plain; charset=UTF-8",

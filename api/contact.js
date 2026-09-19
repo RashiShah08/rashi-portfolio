@@ -50,8 +50,18 @@ export default async function handler(req, res) {
         contentType: req.headers["content-type"],
         origin: req.headers.origin,
         host: req.headers["x-forwarded-host"] || req.headers.host,
-        // Vercel puts the real client address first; it is only ever stored hashed.
-        ip: String(req.headers["x-forwarded-for"] || req.socket?.remoteAddress || "").split(",")[0].trim(),
+        // Client IP for rate limiting, only ever stored hashed. On Vercel both x-real-ip and
+        // x-forwarded-for are set by the platform to the true client IP and cannot be spoofed
+        // (Vercel overwrites X-Forwarded-For and does not forward external IPs), so a visitor
+        // cannot rotate this header to escape the per-sender limit. The first XFF entry is the
+        // client; socket address is the last-resort local-dev fallback.
+        ip:
+          (req.headers["x-real-ip"] ||
+            String(req.headers["x-forwarded-for"] || "").split(",")[0] ||
+            req.socket?.remoteAddress ||
+            "")
+            .toString()
+            .trim(),
         userAgent: req.headers["user-agent"],
         body,
       },
