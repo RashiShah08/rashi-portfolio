@@ -74,7 +74,7 @@ export default function Hero() {
             style={{ fontSize: "var(--fs-display)", lineHeight: 1 }}
           />
           <p style={{ fontSize: "var(--fs-lead)", lineHeight: 1.65, color: "var(--ink-muted)", maxWidth: "42ch" }}>
-            I turn ideas into working software &mdash; full-stack apps and ML pipelines.
+            I turn ideas into working software - full-stack apps and ML pipelines.
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginTop: 6 }}>
             <Magnetic as="a" href="#projects" className="btn3d" style={{ ...btn, background: "var(--maroon)", color: "var(--cream)" }}>

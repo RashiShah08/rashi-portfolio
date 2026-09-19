@@ -44,7 +44,7 @@ export default function Contact() {
             </h2>
             <p style={{ fontSize: 16, color: "var(--cream)", opacity: 0.8, marginTop: 18, maxWidth: 420, lineHeight: 1.6 }}>
               I&apos;m open to internships, collaborations, and interesting problems in ML or full-stack product.
-              Reach out &mdash; I reply quickly.
+              Reach out - I reply quickly.
             </p>
             <Magnetic
               as="a"

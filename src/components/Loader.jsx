@@ -34,7 +34,7 @@ export default function Loader() {
         transition={{ delay: 0.5, duration: 0.7 }}
         style={{ color: "var(--cream)", fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 26 }}
       >
-        Rashi Shah &mdash; Portfolio
+        Rashi Shah - Portfolio
       </motion.span>
     </motion.div>
   );
