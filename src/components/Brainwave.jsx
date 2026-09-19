@@ -14,17 +14,6 @@ function listen() {
   });
 }
 
-export function exciteWaves(amount) {
-  boost = Math.min(1.6, boost + amount);
-}
-
-// Rough EEG bands, so the readout names what the visitor's movement "looks like".
-function band(hz) {
-  if (hz < 13) return "alpha";
-  if (hz < 30) return "beta";
-  return "gamma";
-}
-
 const W = 1200;
 const N = 160;
 
@@ -36,7 +25,6 @@ export default function Brainwave({
   seed = 0,
   speed = 1,
   baseEnergy = 0.35,
-  readoutRef,
   style,
 }) {
   const svgRef = useRef(null);
@@ -75,11 +63,6 @@ export default function Brainwave({
         d += `${i ? "L" : "M"}${((u * W) | 0)} ${y.toFixed(1)}`;
       }
       pathRef.current?.setAttribute("d", d);
-
-      if (readoutRef?.current) {
-        const hz = 4 + energy * 22;
-        readoutRef.current.textContent = `${hz.toFixed(1)} Hz · ${band(hz)}`;
-      }
     };
 
     const loop = () => {
@@ -104,7 +87,7 @@ export default function Brainwave({
       cancelAnimationFrame(raf);
       io.disconnect();
     };
-  }, [height, seed, speed, baseEnergy, readoutRef]);
+  }, [height, seed, speed, baseEnergy]);
 
   return (
     <svg

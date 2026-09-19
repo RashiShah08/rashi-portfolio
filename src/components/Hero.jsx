@@ -1,12 +1,9 @@
-import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { stats } from "../data/content";
 import Counter from "./Counter";
 import Magnetic from "./Magnetic";
-import Monogram from "./Monogram";
-import Brainwave, { exciteWaves } from "./Brainwave";
 import SplitText from "./SplitText";
-import { PinIcon, ArrowIcon } from "./Icons";
+import { ArrowIcon, PinIcon } from "./Icons";
 
 const ease = [0.22, 1, 0.36, 1];
 const pop = (delay) => ({
@@ -28,35 +25,6 @@ const btn = {
 };
 
 export default function Hero() {
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 110, damping: 18 });
-  const sy = useSpring(my, { stiffness: 110, damping: 18 });
-  const monoX = useTransform(sx, [-0.5, 0.5], [-22, 22]);
-  const monoY = useTransform(sy, [-0.5, 0.5], [-16, 16]);
-  const waveX = useTransform(sx, [-0.5, 0.5], [-10, 10]);
-  const readoutRef = useRef(null);
-  const lastPoint = useRef(null);
-
-  const handleMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mx.set((e.clientX - rect.left) / rect.width - 0.5);
-    my.set((e.clientY - rect.top) / rect.height - 0.5);
-
-    const point = { x: e.clientX, y: e.clientY, t: e.timeStamp };
-    const prev = lastPoint.current;
-    if (prev) {
-      const pxPerMs = Math.hypot(point.x - prev.x, point.y - prev.y) / Math.max(8, point.t - prev.t);
-      exciteWaves(Math.min(0.25, pxPerMs * 0.08));
-    }
-    lastPoint.current = point;
-  };
-  const handleLeave = () => {
-    mx.set(0);
-    my.set(0);
-    lastPoint.current = null;
-  };
-
   return (
     <div id="home" className="wrap hero">
       <div className="hero-top">
@@ -90,57 +58,13 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div
-          {...pop(0.15)}
-          className="card hero-photo"
-          onPointerMove={handleMove}
-          onPointerLeave={handleLeave}
-          onPointerCancel={handleLeave}
-          style={{
-            position: "relative",
-            overflow: "hidden",
-            touchAction: "pan-y",
-            background: "linear-gradient(170deg, oklch(0.95 0.018 78), var(--cream-2) 55%, oklch(0.87 0.028 76))",
-          }}
-        >
-          <motion.div style={{ position: "absolute", left: "50%", top: "45%", marginLeft: -110, marginTop: -110, x: monoX, y: monoY }}>
-            <Monogram size={220} ring delay={0.6} />
-          </motion.div>
-
-          <motion.div style={{ position: "absolute", left: -20, right: -20, bottom: 84, x: waveX, opacity: 0.55 }}>
-            <Brainwave height={80} seed={3} strokeWidth={1.4} readoutRef={readoutRef} />
-          </motion.div>
-
-          <div
-            style={{
-              position: "absolute",
-              top: 22,
-              left: 22,
-              background: "var(--maroon)",
-              color: "var(--cream)",
-              borderRadius: 999,
-              padding: "10px 18px",
-              fontFamily: "Sora",
-              fontSize: 13,
-              fontWeight: 700,
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              boxShadow: "var(--depth-dark)",
-            }}
-          >
+        <motion.figure {...pop(0.15)} className="card hero-photo">
+          <img src="rashi.jpg" alt="Rashi Shah, smiling, in a white shirt and beige trousers" width="1200" height="1600" fetchPriority="high" />
+          <figcaption className="hero-photo-chip">
             <PinIcon style={{ width: 15, height: 15 }} />
             Mumbai, India
-          </div>
-
-          <div className="signal-bar">
-            <span>Photo placeholder</span>
-            <span className="signal-readout" title="Move across this card to excite the signal">
-              <span className="signal-dot" />
-              <span ref={readoutRef}>11.7 Hz · alpha</span>
-            </span>
-          </div>
-        </motion.div>
+          </figcaption>
+        </motion.figure>
       </div>
 
       <div className="hero-stats">
